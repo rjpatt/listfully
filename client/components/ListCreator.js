@@ -6,7 +6,7 @@ const ListCreator = (props) => {
       <h3>Create a new list!</h3>
       <form id="new-list">
         <label for="list-name">Name your list: </label>
-        <input type="text" id="list-name"></input>
+        <input type="text" id="listName"></input>
         <label for="item1">Item 1: </label>
         <input type="text" id="item1"></input>
         <label for="item2">Item 2: </label>

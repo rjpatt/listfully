@@ -30,6 +30,13 @@ header {
     border: 1px solid $darkBlue;
     box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
   }
+  ul {
+    display: flex;
+    list-style-type: none;
+    li {
+      margin-left: 1rem;
+    }
+  }
 }
 
 #listcreator form {
