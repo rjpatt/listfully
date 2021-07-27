@@ -3,14 +3,34 @@ const app = express();
 const path = require('path');
 const PORT = 3000;
 
+
+const listController = require('./controllers/listController');
+
+app.use(express.json());
+app.use(express.static('build'));
+app.use(express.urlencoded({ extended: true }));
+
+app.post('/addlist', listController.addList, (req, res) => {
+  return res.status(200).json(res.locals.list);
+})
+
+app.get('/lists', listController.getLists, (req, res) => {
+  return res.status(200).json(res.locals.lists)
+})
+
 if (process.env.NODE_ENV === 'production') {
   // statically serve everything in the build folder on the route '/build'
   app.use('/build', express.static(path.join(__dirname, '../build')));
   // serve index.html on the route '/'
-  app.get('/', (req, res) => {
+  app.get('/*', (req, res) => {
     return res.status(200).sendFile(path.join(__dirname, '../index.html'));
   });
 }
+
+
+
+// catch-all route handler for any requests to an unknown route
+app.use((req, res) => res.status(404).send('Whoops! We can\'t find that page.'));
 
 /**
  * express error handler

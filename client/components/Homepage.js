@@ -4,7 +4,7 @@ function Homepage() {
 
 
   return (
-    <div>
+    <div id="homepage">
       <h3>Welcome to Listfully!</h3>
       <p>
         Thanks for visiting Listfully, an app for list lovers!

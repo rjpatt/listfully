@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const MONGO_URI = 'mongodb+srv://rjpatt:A915sekANJPB87Lm@cluster0.tz1wg.mongodb.net/listfully?retryWrites=true&w=majority';
 
 mongoose.connect(MONGO_URI, {
-  userNewUrlParser: true,
+  useNewUrlParser: true,
   useUnifiedTopology: true,
   dbName: 'listfully'
 })

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, NavLink } from 'react-router-dom';
 import ListCreator from './components/ListCreator';
 import Homepage from './components/Homepage';
 import ListContainer from './containers/ListContainer';
@@ -8,35 +8,35 @@ function App() {
   const [state, setState] = useState({});
 
   return (
-    <Router>
+    <>
       <header>
         <h1>Listfully</h1>
         <nav>
           <ul>
             <li>
-              <Link to='/'><button>Home</button></Link>
+              <NavLink to='/' activeClassName='active'><button>Home</button></NavLink>
             </li>
             <li>
-              <Link to='/lists'><button>Lists</button></Link>
+              <NavLink to='/lists' activeClassName='active'><button>Lists</button></NavLink>
             </li>
             <li>
-              <Link to='/addlist'><button>Add List</button></Link>
+              <NavLink to='/addlist' activeClassName='active'><button>Add List</button></NavLink>
             </li>
           </ul>
         </nav>
       </header>
       <Switch>
-        <Route path='/lists'>
+        <Route exact path='/lists'>
           <ListContainer />
         </Route>
-        <Route path='/addlist'>
+        <Route exact path='/addlist'>
           <ListCreator />
         </Route>
-        <Route path='/'>
+        <Route exact path='/'>
           <Homepage />
         </Route>
       </Switch>
-    </Router>
+    </>
   );
 }
 
