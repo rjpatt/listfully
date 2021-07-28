@@ -3,20 +3,16 @@ const app = express();
 const path = require('path');
 const PORT = 3000;
 
+const apiRouter = require('./routers/api');
 
-const listController = require('./controllers/listController');
 
 app.use(express.json());
 app.use(express.static('build'));
 app.use(express.urlencoded({ extended: true }));
 
-app.post('/addlist', listController.addList, (req, res) => {
-  return res.status(200).json(res.locals.list);
-})
+app.use('/api', apiRouter);
 
-app.get('/lists', listController.getLists, (req, res) => {
-  return res.status(200).json(res.locals.lists)
-})
+
 
 if (process.env.NODE_ENV === 'production') {
   // statically serve everything in the build folder on the route '/build'

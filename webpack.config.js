@@ -2,8 +2,15 @@ const path = require('path');
 
 module.exports = {
   devServer: {
+    historyApiFallback: true,
     proxy: {
-      '/api': 'http://localhost:3000',
+      '/api/**': {
+        target: 'http://localhost:3000',
+        pathRewrite: { '^/api': '' },
+        secure: false,
+        logLevel: 'debug',
+      }
+
     },
     publicPath: '/build/',
     hot: true,

@@ -25,7 +25,7 @@ const ListCreator = (props) => {
       listName,
       items
     };
-    fetch('/addlist', {
+    fetch('/api/add', {
       method: 'POST',
       headers: {
         'Content-Type': 'Application/JSON'

@@ -4,7 +4,9 @@ const listController = {};
 
 listController.getLists = async (req, res, next) => {
   try {
-    res.locals.lists = await models.List.find({})
+    const lists = await models.List.find({})
+    console.log(lists)
+    res.locals.lists = lists;
     return next();
   } catch (err) {
     return next({ log: `getLists controller encountered error: ${err}`, message: err });
@@ -14,8 +16,6 @@ listController.getLists = async (req, res, next) => {
 listController.addList = async (req, res, next) => {
   try {
     const { listName, items } = req.body;
-    console.log('name', listName);
-    console.log('items: ', items)
     if (!listName) {
       return next({ log: 'Error: list name must be entered', message: 'Please enter a list name' });
     }
