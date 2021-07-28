@@ -1,19 +1,18 @@
-import React, { useState, useEffect, Component } from 'react';
+import React from 'react';
 import List from '../components/List';
-import "regenerator-runtime/runtime.js";
-import { Redirect } from 'react-router-dom';
 
-class ListContainer extends Component {
+class ListPage extends Component {
+  id = useParams;
+
   constructor(props) {
     super(props);
     this.state = {
       error: null,
-      fetchedLists: false,
-      lists: []
+      fetchedList: false,
+      list: []
     }
     this.deleteList = this.deleteList.bind(this)
     this.updateLists = this.updateLists.bind(this)
-    this.editList = this.editList.bind(this)
   }
   _isMounted = false;
 
@@ -35,21 +34,21 @@ class ListContainer extends Component {
   }
 
   updateLists = () => {
-    fetch('/api/getLists')
+    fetch(`/api/getLists/${id}`)
       .then(res => res.json())
       .then(
-        (lists) => {
+        (list) => {
           if (this._isMounted) {
             this.setState({
-              lists,
-              fetchedLists: true
+              list,
+              fetchedList: true
             });
           }
         },
         (error) => {
           if (this._isMounted) {
             this.setState({
-              fetchedLists: true,
+              fetchedList: true,
               error
             });
           }
@@ -57,9 +56,6 @@ class ListContainer extends Component {
       )
   }
 
-  editList = (id, e) => {
-    <Redirect to='/editlist' />
-  }
 
   componentDidMount() {
     this._isMounted = true;
@@ -67,7 +63,7 @@ class ListContainer extends Component {
   }
 
   componentDidUpdate(prevState) {
-    if (this.state.lists !== prevState.lists) {
+    if (this.state.list !== prevState.list) {
       this.updateLists();
     }
   }
@@ -77,35 +73,33 @@ class ListContainer extends Component {
   }
 
   render() {
-    const { error, fetchedLists, lists } = this.state;
+    const { error, fetchedList, list } = this.state;
     if (error) {
       return (
         <div className="error">
           Error: {error.message}
         </div>
       )
-    } else if (!fetchedLists) {
-      return <div className="loading">Loading...</div>;
+    } else if (!fetchedList) {
+      return <div classname="loading">Loading...</div>;
     } else {
-      if (!lists) return null;
-      if (!lists.length) return (
-        <div>Sorry, no lists found</div>
+      if (!list) return null;
+      if (!list.length) return (
+        <div>Sorry, no list found</div>
       )
       const renderLists = [];
-      for (let i = 0; i < lists.length; i++) {
+      for (let i = 0; i < list.length; i++) {
 
-        renderLists.push(<List key={`list${i}`} info={lists[i]} delete={this.deleteList} />)
+        renderLists.push(<List key={`list${i}`} info={list[i]} delete={this.deleteList} />)
 
       }
       return (
-        <div id="list-container">
+        <div id="list-page">
           {renderLists}
         </div>
       );
     }
   }
-
 }
 
-
-export default ListContainer;
+export default ListPage;

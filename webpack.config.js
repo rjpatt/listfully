@@ -3,12 +3,11 @@ const path = require('path');
 module.exports = {
   devServer: {
     historyApiFallback: true,
+    inline: true,
     proxy: {
       '/api/**': {
         target: 'http://localhost:3000',
-        pathRewrite: { '^/api': '' },
         secure: false,
-        logLevel: 'debug',
       }
 
     },

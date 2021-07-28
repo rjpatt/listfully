@@ -5,21 +5,14 @@ const ListCreator = (props) => {
   const saveList = (e) => {
     e.preventDefault();
     const listName = document.getElementById('listName').value;
-    const items = [document.getElementById('item1').value,
-    document.getElementById('item2').value,
-    document.getElementById('item3').value,
-    document.getElementById('item4').value,
-    document.getElementById('item5').value,
-    document.getElementById('item6').value,
-    ];
+    const itemInputs = document.querySelectorAll('input');
+    const items = itemInputs.map((input) => {
+      input.value;
+    })
 
-    document.getElementById('listName').value = '';
-    document.getElementById('item1').value = '';
-    document.getElementById('item2').value = '';
-    document.getElementById('item3').value = '';
-    document.getElementById('item4').value = '';
-    document.getElementById('item5').value = '';
-    document.getElementById('item6').value = '';
+    itemInputs.forEach((input) => {
+      input.value = '';
+    })
 
     const body = {
       listName,

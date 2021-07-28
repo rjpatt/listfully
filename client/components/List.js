@@ -1,18 +1,26 @@
 import React from 'react';
+import ListItem from './ListItem';
+import { Link } from 'react-router-dom';
 
 function List(props) {
+  const { title, items, _id } = props.info;
+
+  const listItems = [];
+  for (let i = 0; i < items.length; i++) {
+    listItems.push(<ListItem key={`listitem${i}`} liInfo={items[i]} />)
+  };
+
 
   return (
-    <div class="listDisplay">
-      <h3>{props.title}</h3>
+    <div className="listDisplay">
+      <h3>{title}</h3>
       <ul>
-        <li>{props.items[0]}</li>
-        <li>{props.items[1]}</li>
-        <li>{props.items[2]}</li>
-        <li>{props.items[3]}</li>
-        <li>{props.items[4]}</li>
-        <li>{props.items[5]}</li>
+        {listItems}
       </ul>
+      <div className="listButtons">
+        <button className="delete" onClick={(e) => props.delete({ id: _id }, e)}>Delete</button>
+        <Link to={`/editlist/${_id}`}><button className="edit">Edit</button></Link>
+      </div>
     </div>
   )
 
