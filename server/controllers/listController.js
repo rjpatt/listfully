@@ -5,7 +5,6 @@ const listController = {};
 listController.getLists = async (req, res, next) => {
   try {
     const lists = await models.List.find({})
-    console.log(lists)
     res.locals.lists = lists;
     return next();
   } catch (err) {
