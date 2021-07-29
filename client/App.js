@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Switch, Route, NavLink } from 'react-router-dom';
 import ListCreator from './components/ListCreator';
 import Homepage from './components/Homepage';
-import EditList from './components/EditList';
+import EditListContainer from './containers/EditListContainer';
 
 import ListContainer from './containers/ListContainer';
 
@@ -35,7 +35,7 @@ function App(props) {
           <ListCreator />
         </Route>
         <Route path='/editlist/:id'>
-          <EditList />
+          <EditListContainer />
         </Route>
 
 

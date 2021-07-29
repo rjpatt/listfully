@@ -9,9 +9,10 @@ Listfully Component Structure
 
   |List Creator
     |Add List Item
-
-  |Edit List
-    |Edit List Item
+    
+  |Edit List Container
+    |Edit List
+      |Edit List Item
 
   |List Page (container for single lists)
     |List

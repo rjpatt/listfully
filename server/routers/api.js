@@ -20,8 +20,8 @@ router.delete('/delete', listController.deleteList, (req, res) => {
   return res.status(200);
 })
 
-router.put('/edit', listController.editList, (req, res) => {
-  return res.status(200);
+router.put('/edit', listController.getListforEditing, listController.editListItems, listController.editList, (req, res) => {
+  return res.status(200).json(res.locals.list);
 })
 
 module.exports = router;

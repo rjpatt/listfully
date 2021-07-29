@@ -40,7 +40,7 @@ header {
   }
 }
 
-#listcreator {
+#listcreator, #listeditor {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,6 +60,7 @@ header {
       border-radius: 3px;
       background-color: $medBlue;
       color: $lightGrey;
+      margin-top: .5rem;
     }
 
     button {
