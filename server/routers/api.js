@@ -1,6 +1,7 @@
 const express = require('express');
 
 const listController = require('../controllers/listController');
+const userController = require('../controllers/userController');
 
 const router = express.Router();
 
@@ -14,6 +15,13 @@ router.get('/getLists', listController.getLists, (req, res) => {
   return res.status(200).json(res.locals.lists)
 })
 
+router.post('/signup', userController.createUser, (req, res) => {
+  return res.status(200);
+})
+
+router.post('/login', userController.login, (req, res) => {
+  return res.status(200).json(res.locals.userPassed);
+})
 
 
 router.delete('/delete', listController.deleteList, (req, res) => {

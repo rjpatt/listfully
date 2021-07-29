@@ -7,12 +7,17 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import PrivateRoute from './components/PrivateRoute';
 import EditListContainer from './containers/EditListContainer';
+import ListPage from './containers/ListPage';
 
 import ListContainer from './containers/ListContainer';
 
 function App(props) {
   const [state, setState] = useState({});
   const [currentUser, setCurrentUser] = useState(null);
+
+  const authenticateUser = (username) => {
+    setCurrentUser(username);
+  }
 
   return (
     <>
@@ -54,6 +59,9 @@ function App(props) {
         <Route exact path='/lists'>
           <ListContainer />
         </Route>
+        <Route path='/lists/:id'>
+          <ListPage />
+        </Route>
         <Route exact path='/addlist'>
           <ListCreator />
         </Route>
@@ -61,10 +69,10 @@ function App(props) {
           <EditListContainer />
         </Route>
         <Route exact path='/login'>
-          <Login />
+          <Login authenticateUser={authenticateUser} />
         </Route>
         <Route exact path='/signup'>
-          <SignUp />
+          <SignUp authenticateUser={authenticateUser} />
         </Route>
 
         <Route exact path='/'>

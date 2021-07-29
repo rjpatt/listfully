@@ -54,7 +54,7 @@ header {
   }
 }
 
-#listcreator, #listeditor {
+#listcreator, #listeditor, #list-page {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -139,6 +139,15 @@ header {
       border: 1px solid $red;
       box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
     }
+
+    .delete:active {
+      transform: scale(0.98);
+    }
+
+    .delete:hover {
+      background-color: $red;
+      color: $white;
+    }
   
     .edit {
       margin-left: 1rem;
@@ -152,7 +161,12 @@ header {
       border: 1px solid $darkBlue;
       box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
     }
-  
+    .edit:active {
+      transform: scale(0.98);
+    }
+    .edit:hover {
+      background-color: $lightBlue;
+    }  
 }
 
 .loading, .error {

@@ -13,7 +13,7 @@ function List(props) {
 
   return (
     <div className="listDisplay">
-      <h3>{title}</h3>
+      <Link to={`/lists/${_id}`}><h3>{title}</h3></Link>
       <ul>
         {listItems}
       </ul>

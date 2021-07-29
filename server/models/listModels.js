@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const MONGO_URI = 'mongodb+srv://rjpatt:A915sekANJPB87Lm@cluster0.tz1wg.mongodb.net/listfully?retryWrites=true&w=majority';
 
@@ -18,6 +19,15 @@ const userSchema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true }
 });
+
+userSchema.pre('save', async function (next) {
+  try {
+    this.password = await bcrypt.hash(this.password, 10)
+    return next();
+  } catch (err) {
+    console.log(err)
+  }
+})
 
 const User = mongoose.model('user', userSchema);
 

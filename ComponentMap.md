@@ -1,7 +1,11 @@
 Listfully Component Structure
 
 |App
+
   |Homepage
+  |Sign Up
+  |Login
+  |Page Not Found
 
   |List Container
     |List
@@ -15,6 +19,4 @@ Listfully Component Structure
     |Edit List
       |Edit List Item
 
-  |List Page (container for single lists)
-    |List
-      |List Item
+  

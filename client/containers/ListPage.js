@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import List from '../components/List';
+import { withRouter } from 'react-router-dom';
 
 class ListPage extends Component {
-  id = useParams;
+
 
   constructor(props) {
     super(props);
@@ -34,7 +35,7 @@ class ListPage extends Component {
   }
 
   updateLists = () => {
-    fetch(`/api/getLists/${id}`)
+    fetch(`/api/getLists/${this.props.match.params.id}`)
       .then(res => res.json())
       .then(
         (list) => {
@@ -81,7 +82,7 @@ class ListPage extends Component {
         </div>
       )
     } else if (!fetchedList) {
-      return <div classname="loading">Loading...</div>;
+      return <div className="loading">Loading...</div>;
     } else {
       if (!list) return null;
       if (!list.length) return (
@@ -102,4 +103,4 @@ class ListPage extends Component {
   }
 }
 
-export default ListPage;
+export default withRouter(ListPage);
