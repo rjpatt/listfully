@@ -9,7 +9,8 @@ class EditListContainer extends Component {
       title: '',
       items: [],
       list: [],
-      fetchedData: false
+      fetchedData: false,
+
     }
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -37,6 +38,7 @@ class EditListContainer extends Component {
   componentWillUnmount() {
     this._isMounted = false;
   }
+
 
   onSubmit(e) {
     e.preventDefault();

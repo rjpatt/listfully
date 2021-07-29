@@ -20,7 +20,7 @@ function EditList(props) {
       <label htmlFor="listName">Name your list: </label>
       <input type="text" id="listName" defaultValue={title} />
       {listItems}
-      <input type="submit" value="Submit" />
+      <input type="submit" value="Submit" id="submit" />
     </form>
 
   );

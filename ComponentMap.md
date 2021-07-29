@@ -8,7 +8,8 @@ Listfully Component Structure
       |List Item
 
   |List Creator
-    |Add List Item
+    |Add List
+      |Add List Item
     
   |Edit List Container
     |Edit List

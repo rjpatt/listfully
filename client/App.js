@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Switch, Route, NavLink } from 'react-router-dom';
 import ListCreator from './components/ListCreator';
 import Homepage from './components/Homepage';
+import PageNotFound from './components/PageNotFound';
 import EditListContainer from './containers/EditListContainer';
 
 import ListContainer from './containers/ListContainer';
@@ -42,6 +43,9 @@ function App(props) {
 
         <Route exact path='/'>
           <Homepage />
+        </Route>
+        <Route path='*'>
+          <PageNotFound />
         </Route>
       </Switch>
     </>

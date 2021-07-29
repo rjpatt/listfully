@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
+import AddListItem from './AddListItem';
+import AddList from './AddList';
+import { withRouter } from 'react-router-dom';
 
 const ListCreator = (props) => {
+
+  const [currIndex, setCurrIndex] = useState(0);
+  const [inputList, setInputList] = useState([]);
 
   const saveList = (e) => {
     e.preventDefault();
     const listName = document.getElementById('listName').value;
+    console.log(listName)
     const itemInputs = document.querySelectorAll('input');
-    const items = itemInputs.map((input) => {
-      input.value;
-    })
-
+    const items = [];
+    for (let i = 1; i < itemInputs.length; i++) {
+      items.push(itemInputs[i].value);
+    }
+    console.log(items)
     itemInputs.forEach((input) => {
       input.value = '';
     })
@@ -30,31 +38,23 @@ const ListCreator = (props) => {
         console.log(data);
       })
       .catch(err => console.log('addList fetch ERROR: ', err));
-
+    setInputList([]);
+    setCurrIndex(0);
+    props.history.push('/lists');
   };
+
+  const addNewListItem = (e) => {
+    e.preventDefault();
+    setInputList(inputList.concat(<AddListItem key={currIndex} index={currIndex} />))
+    setCurrIndex(currIndex + 1);
+  }
 
   return (
     <div id="listcreator">
       <h3>Create a new list!</h3>
-      <form id="new-list">
-        <label htmlFor="listName">Name your list: </label>
-        <input type="text" id="listName"></input>
-        <label htmlFor="item1">Item 1: </label>
-        <input type="text" id="item1"></input>
-        <label htmlFor="item2">Item 2: </label>
-        <input type="text" id="item2"></input>
-        <label htmlFor="item3">Item 3: </label>
-        <input type="text" id="item3"></input>
-        <label htmlFor="item4">Item 4: </label>
-        <input type="text" id="item4"></input>
-        <label htmlFor="item5">Item 5: </label>
-        <input type="text" id="item5"></input>
-        <label htmlFor="item6">Item 6: </label>
-        <input type="text" id="item6"></input>
-        <button id="submit" onClick={saveList}>Save List</button>
-      </form>
+      <AddList currIndex={currIndex} inputList={inputList} addNewListItem={addNewListItem} saveList={saveList} />
     </div>
   );
 };
 
-export default ListCreator;
+export default withRouter(ListCreator);
