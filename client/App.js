@@ -1,30 +1,52 @@
 import React, { useState } from 'react';
-import { Switch, Route, NavLink } from 'react-router-dom';
+import { Switch, Route, NavLink, Link } from 'react-router-dom';
 import ListCreator from './components/ListCreator';
 import Homepage from './components/Homepage';
 import PageNotFound from './components/PageNotFound';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
+import PrivateRoute from './components/PrivateRoute';
 import EditListContainer from './containers/EditListContainer';
 
 import ListContainer from './containers/ListContainer';
 
 function App(props) {
   const [state, setState] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
 
   return (
     <>
       <header>
-        <h1>Listfully</h1>
+        <Link to="/"><h1>Listfully</h1></Link>
         <nav>
           <ul>
-            <li>
-              <NavLink to='/' activeClassName='active'><button>Home</button></NavLink>
-            </li>
-            <li>
-              <NavLink to='/lists' activeClassName='active'><button>Lists</button></NavLink>
-            </li>
-            <li>
-              <NavLink to='/addlist' activeClassName='active'><button>Add List</button></NavLink>
-            </li>
+
+            {currentUser &&
+              <>
+                <li>
+                  <NavLink to='/' activeClassName='active'><button>Home</button></NavLink>
+                </li>
+                <li>
+                  <NavLink to='/lists' activeClassName='active'><button>Lists</button></NavLink>
+                </li>
+                <li>
+                  <NavLink to='/addlist' activeClassName='active'><button>Add List</button></NavLink>
+                </li>
+              </>
+            }
+            {!currentUser &&
+              <>
+                <li>
+                  <NavLink to='/login' activeClassName='active'><button>Login</button></NavLink>
+
+                </li>
+                <li>
+                  <NavLink to='/signup' activeClassName='active'><button>Sign Up</button></NavLink>
+
+                </li>
+              </>
+            }
+
           </ul>
         </nav>
       </header>
@@ -38,8 +60,12 @@ function App(props) {
         <Route path='/editlist/:id'>
           <EditListContainer />
         </Route>
-
-
+        <Route exact path='/login'>
+          <Login />
+        </Route>
+        <Route exact path='/signup'>
+          <SignUp />
+        </Route>
 
         <Route exact path='/'>
           <Homepage />
