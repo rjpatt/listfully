@@ -26,6 +26,8 @@
   "homepage": "https://github.com/rjpatt/listfully#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "dotenv-webpack": "^7.0.3",
     "express": "^4.17.1",
     "mongoose": "^5.13.3",
     "node-jsx": "^0.13.3",

@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+require('dotenv').config();
 
-const MONGO_URI = 'mongodb+srv://rjpatt:A915sekANJPB87Lm@cluster0.tz1wg.mongodb.net/listfully?retryWrites=true&w=majority';
-
+const MONGO_URI = process.env.db_uri;
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
